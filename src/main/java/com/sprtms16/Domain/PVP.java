@@ -11,7 +11,7 @@ public class PVP {
         this.player2 = player2;
     }
 
-    public double getDistanceBetween(){
+    public double getDistanceBetween() {
         return player1.getLocation().distance(player2.getLocation());
     }
 

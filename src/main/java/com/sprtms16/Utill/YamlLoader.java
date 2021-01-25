@@ -14,7 +14,7 @@ import java.util.Set;
 
 /*
  * Copyright 2017 GoldBigDragon
- * 
+ *
  * GoldBigDragonRPG is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License.
@@ -29,140 +29,140 @@ import java.util.Set;
  */
 
 public class YamlLoader {
-	private FileConfiguration config;
-	private File file;
-	public String charset;
-	private Charset defaultCharset = Charset.forName("UTF-8");
-	private JavaPlugin plugin;
-	
-	
-	public YamlLoader(JavaPlugin plugin) {
-		// TODO Auto-generated constructor stub
-		this.plugin = plugin;
-	}
+    private FileConfiguration config;
+    private File file;
+    public String charset;
+    private Charset defaultCharset = Charset.forName("UTF-8");
+    private JavaPlugin plugin;
 
-	public void getConfig(String path) {
-		getConfig(path, "UTF-8");
-	}
 
-	public void getConfig(String path, char language) {
-		if (language == 'J')
-			getConfig(path, "EUCJP");// iso-2022-jp
-		else if (language == 'C')
-			getConfig(path, "EUCCN");// UTF-16BE
-		else if (language == 'K')
-			getConfig(path, "EUC-KR");
-		else
-			getConfig(path, "UTF-8");
-	}
+    public YamlLoader(JavaPlugin plugin) {
+        // TODO Auto-generated constructor stub
+        this.plugin = plugin;
+    }
 
-	public void getConfig(String path, String encoding) {
-		charset = encoding;
-		file = new File(plugin.getDataFolder().getAbsolutePath() + File.separator + path);
-		try {
-			if (!file.exists()) {
-				file.getParentFile().mkdirs();
-				file.createNewFile();
-			}
-		} catch (IOException e) {
-		}
-		config = YamlConfiguration.loadConfiguration(file);
-	}
+    public void getConfig(String path) {
+        getConfig(path, "UTF-8");
+    }
 
-	public Object get(String path) {
-		return this.config.get(path);
-	}
+    public void getConfig(String path, char language) {
+        if (language == 'J')
+            getConfig(path, "EUCJP");// iso-2022-jp
+        else if (language == 'C')
+            getConfig(path, "EUCCN");// UTF-16BE
+        else if (language == 'K')
+            getConfig(path, "EUC-KR");
+        else
+            getConfig(path, "UTF-8");
+    }
 
-	public Object get(String path, Object def) {
-		return this.config.get(path, def);
-	}
+    public void getConfig(String path, String encoding) {
+        charset = encoding;
+        file = new File(plugin.getDataFolder().getAbsolutePath() + File.separator + path);
+        try {
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+        }
+        config = YamlConfiguration.loadConfiguration(file);
+    }
 
-	public String getString(String path) {
-		return this.config.getString(path);
-	}
+    public Object get(String path) {
+        return this.config.get(path);
+    }
 
-	public int getInt(String path) {
-		return this.config.getInt(path);
-	}
+    public Object get(String path, Object def) {
+        return this.config.get(path, def);
+    }
 
-	public long getLong(String path) {
-		return this.config.getLong(path);
-	}
+    public String getString(String path) {
+        return this.config.getString(path);
+    }
 
-	public boolean getBoolean(String path) {
-		return this.config.getBoolean(path);
-	}
+    public int getInt(String path) {
+        return this.config.getInt(path);
+    }
 
-	public void createSection(String path) {
-		this.config.createSection(path);
-	}
+    public long getLong(String path) {
+        return this.config.getLong(path);
+    }
 
-	public ConfigurationSection getConfigurationSection(String path) {
-		return this.config.getConfigurationSection(path);
-	}
+    public boolean getBoolean(String path) {
+        return this.config.getBoolean(path);
+    }
 
-	public double getDouble(String path) {
-		return this.config.getDouble(path);
-	}
+    public void createSection(String path) {
+        this.config.createSection(path);
+    }
 
-	public List<?> getList(String path) {
-		return this.config.getList(path);
-	}
+    public ConfigurationSection getConfigurationSection(String path) {
+        return this.config.getConfigurationSection(path);
+    }
 
-	public ItemStack getItemStack(String path) {
-		return this.config.getItemStack(path);
-	}
+    public double getDouble(String path) {
+        return this.config.getDouble(path);
+    }
 
-	public List<Map<?, ?>> getMapList(String path) {
-		return this.config.getMapList(path);
-	}
+    public List<?> getList(String path) {
+        return this.config.getList(path);
+    }
 
-	public boolean contains(String path) {
-		return this.config.contains(path);
-	}
+    public ItemStack getItemStack(String path) {
+        return this.config.getItemStack(path);
+    }
 
-	public void removeKey(String path) {
-		this.config.set(path, null);
-	}
+    public List<Map<?, ?>> getMapList(String path) {
+        return this.config.getMapList(path);
+    }
 
-	public void set(String path, Object value) {
-		this.config.set(path, value);
-	}
+    public boolean contains(String path) {
+        return this.config.contains(path);
+    }
 
-	public void setString(String path, String value) {
-		value = new String(value.getBytes(defaultCharset), defaultCharset);
-		this.config.set(path, value);
-	}
+    public void removeKey(String path) {
+        this.config.set(path, null);
+    }
 
-	public void saveConfig() {
-		try {
-			Writer fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), defaultCharset));
-			fileWriter.write(config.saveToString());
-			fileWriter.flush();
-			fileWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    public void set(String path, Object value) {
+        this.config.set(path, value);
+    }
 
-	public Set<String> getKeys() {
-		return this.config.getKeys(false);
-	}
+    public void setString(String path, String value) {
+        value = new String(value.getBytes(defaultCharset), defaultCharset);
+        this.config.set(path, value);
+    }
 
-	public void delete() {
-		if (file.exists())
-			file.delete();
-	}
+    public void saveConfig() {
+        try {
+            Writer fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), defaultCharset));
+            fileWriter.write(config.saveToString());
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public void delete(String path) {
-		File willDelete = new File(
-				plugin.getDataFolder().getAbsolutePath() + File.separator + path);
-		if (willDelete.exists())
-			willDelete.delete();
-	}
+    public Set<String> getKeys() {
+        return this.config.getKeys(false);
+    }
 
-	public boolean isExit(String path) {
-		return new File(plugin.getDataFolder().getAbsolutePath() + File.separator + path)
-				.exists();
-	}
+    public void delete() {
+        if (file.exists())
+            file.delete();
+    }
+
+    public void delete(String path) {
+        File willDelete = new File(
+                plugin.getDataFolder().getAbsolutePath() + File.separator + path);
+        if (willDelete.exists())
+            willDelete.delete();
+    }
+
+    public boolean isExit(String path) {
+        return new File(plugin.getDataFolder().getAbsolutePath() + File.separator + path)
+                .exists();
+    }
 }

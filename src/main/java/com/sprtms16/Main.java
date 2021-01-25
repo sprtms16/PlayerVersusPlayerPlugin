@@ -14,14 +14,14 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
         PluginDescriptionFile pdfFile = this.getDescription();
-        logger.log(Level.FINE,"PVP Plugin Enable");
-        logger.log(Level.FINE,pdfFile.getName() + " Ver " + pdfFile.getVersion() + " loding complete");
-        getServer().getPluginManager().registerEvents(new Matching(this),this);
+        logger.log(Level.FINE, "PVP Plugin Enable");
+        logger.log(Level.FINE, pdfFile.getName() + " Ver " + pdfFile.getVersion() + " loding complete");
+        getServer().getPluginManager().registerEvents(new Matching(this), this);
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
-        logger.log(Level.FINE,"PVP Plugin Disable");
+        logger.log(Level.FINE, "PVP Plugin Disable");
     }
 }
